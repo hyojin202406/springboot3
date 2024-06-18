@@ -8,8 +8,11 @@ server:
 spring:
   jpa:
     show-sql: true
+#    hibernate:
+#      ddl-auto: create # 공부용
     properties:
       hibernate:
+#        show_sql: true
         format_sql: true
     defer-datasource-initialization: true
   datasource:
@@ -23,10 +26,22 @@ spring:
     port: 5672
     username: guest
     password: guest
-#    virtual-host: sample
+    virtual-host: sample
+
+rabbitmq:
+  queue:
+    name: sample.queue
+  exchange:
+    name: sample.exchange
+  routing:
+    key: sample.queue
 
 ## p6spy
 decorator:
   datasource:
     p6spy:
       enable-logging: false
+
+# logger
+logging.level:
+  org.hibernate.SQL: debug
